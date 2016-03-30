@@ -5,7 +5,16 @@ build:
  - clean:wipe
  - copy:full
  - clean:source_in_build
- - compass
- - bytesize
+ - stylesheets
+ - javascript
 dependencies:
  - composer:update
+stylesheets:
+ - compass
+ - postcss
+ - bytesize:css 
+javascript:
+ - jshint
+ - concat
+ - uglify:js
+ - bytesize:js
