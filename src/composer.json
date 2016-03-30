@@ -1,0 +1,14 @@
+{
+    "name": "pixeline/bugs",
+    "description": "Tiny bug tracking system",
+    "require": {
+        "bcosca/fatfree": "^3.5"
+    },
+    "authors": [
+        {
+            "name": "Alexandre Plennevaux",
+            "email": "alexandre@pixeline.be"
+        }
+    ],
+    "minimum-stability": "stable"
+}

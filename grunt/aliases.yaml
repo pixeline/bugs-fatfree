@@ -1,0 +1,11 @@
+default:
+ - build
+ - watch
+build:
+ - clean:wipe
+ - copy:full
+ - clean:source_in_build
+ - compass
+ - bytesize
+dependencies:
+ - composer:update

@@ -1,0 +1,29 @@
+{
+  "name": "bugs-fatfree",
+  "version": "1.0.0",
+  "description": "Bugs (fatfree version)",
+  "main": "gruntfile.js",
+  "devDependencies": {
+    "autoprefixer": "^6.3.5",
+    "compass": "^0.1.1",
+    "cssnano": "^3.5.2",
+    "grunt": "^0.4.5",
+    "grunt-bytesize": "^0.1.1",
+    "grunt-composer": "^0.4.4",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-compass": "^1.1.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-newer": "^1.1.2",
+    "grunt-postcss": "^0.8.0",
+    "load-grunt-config": "^0.19.1",
+    "pixrem": "^3.0.0",
+    "time-grunt": "^1.3.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexandre Plennevaux",
+  "license": "ISC"
+}

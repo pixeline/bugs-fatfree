@@ -1,0 +1,13 @@
+# project files
+node_modules/
+build/*
+src/vendor
+.ftppass
+.sass-cache
+sftpCache.json
+# svn, cvs, miscellaneous
+.DS_Store
+profile
+*.svn
+*.bak
+CVS
