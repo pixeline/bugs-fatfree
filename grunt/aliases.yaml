@@ -1,18 +1,19 @@
 default:
  - build
  - watch
+
 build:
  - clean:wipe
  - copy:full
  - clean:source_in_build
  - stylesheets
  - javascript
-dependencies:
- - composer:update
+
 stylesheets:
  - compass
  - postcss
  - bytesize:css 
+
 javascript:
  - jshint
  - concat

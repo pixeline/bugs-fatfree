@@ -1,5 +1,4 @@
-yolo!
-  <?php
+<?php
 require_once "vendor/autoload.php";
 
 $f3 = Base::instance();

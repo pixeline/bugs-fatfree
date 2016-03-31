@@ -1,6 +1,8 @@
 module.exports = function(grunt) {
+	
 	// measures the time each task takes
 	require('time-grunt')(grunt);
+  
 	// Autoload Grunt plugins & tasks
 	require('load-grunt-config')(grunt, {
 		init: true,

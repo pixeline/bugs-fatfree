@@ -8,5 +8,5 @@ module.exports = {
 			jQuery: true
 		}
 	},
-	all: ['<%= project.src_dir %>app/assets/js/app.js']
+	all: ['gruntfile.js', '<%= project.src_dir %>app/assets/js/app.js']
 };

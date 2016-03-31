@@ -1,7 +1,7 @@
 module.exports = {
 	sass: {
 		files: ['<%= project.src_dir %>app/assets/css/**/*.scss'],
-		tasks: ['stylesheet'],
+		tasks: ['stylesheets'],
 	},
 	js: {
 		files: ['<%= project.src_dir %>app/assets/js/app.js'],
@@ -15,6 +15,6 @@ module.exports = {
 		options: {
 			livereload: true
 		},
-		files: ['<%= project.build_dir %>**/*'],
+		files: ['<%= project.build_dir %>app/**/*'],
 	}
 };

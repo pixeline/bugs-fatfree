@@ -17,6 +17,7 @@
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-uglify": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-debug-task": "^0.1.8",
     "grunt-newer": "^1.1.2",
     "grunt-postcss": "^0.8.0",
     "load-grunt-config": "^0.19.1",
