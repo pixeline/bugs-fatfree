@@ -1,5 +1,22 @@
 <include href="header.htm" />
 
-<include href="{{ @content }}" />
+<body>
+
+<div id="layout" class="content pure-g">
+    <div id="nav" class="pure-u">
+        <include if="{{ @SESSION.user.logged_in == 1 }}" href="menu-loggedin.htm" />
+    </div>
+    
+    <div id="list" class="pure-u-1"></div>
+    
+    <div id="main" class="pure-u-1">
+	    <include href="{{ @content }}" />
+    </div>
+</div>
+
+
+
+
+<script src="//localhost:35729/livereload.js"></script>
 
 <include href="footer.htm" />

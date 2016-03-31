@@ -13,7 +13,8 @@ class Controller {
     }
 
     function afterroute(){
-        //echo '- After routing';
+		$template=new Template;
+        echo $template->render('layout.htm');
     }
 
 

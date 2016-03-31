@@ -3,10 +3,8 @@
 class UserController extends Controller{
 	function render($f3){
 
-		$f3->set('content','login.htm');
+		$f3->set('content','form-login.htm');
 
-		$template=new Template;
-        echo $template->render('layout.htm');
 	}
 
 
@@ -27,7 +25,14 @@ class UserController extends Controller{
 		}
 
 		if(password_verify($password, $user->password)) {
-			$this->f3->set('SESSION.user', $user->username);
+			$this->f3->set('SESSION.user.username', $user->username);
+			$this->f3->set('SESSION.user.display_name', $user->display_name);
+			$this->f3->set('SESSION.user.email', $user->email);
+			$this->f3->set('SESSION.user.picture', $user->picture);
+			$this->f3->set('SESSION.user.language', $user->language);
+			$this->f3->set('SESSION.user.created_at', $user->created_at);
+			$this->f3->set('SESSION.user.updated_at', $user->updated_at);
+			$this->f3->set('SESSION.user.logged_in', 1);
 			$this->f3->reroute('/');
 		} else {
 			$this->f3->reroute('/login');

@@ -19,3 +19,8 @@ javascript:
  - concat
  - uglify:js
  - bytesize:js
+
+dependencies:
+ description: 'When you want to update to latest purecss'
+ tasks:
+ - composer:update
