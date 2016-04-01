@@ -8,4 +8,11 @@ return array(
     'new_issue' => 'New Issue',
     'menu_button' => 'Menu',
     'your_projects'=> 'Your projects',
+    'username' => 'Username',
+    'your_username' => 'Your username',
+    'welcome'=> 'Welcome to Bugs',
+    'remember_me'=> 'Remember me',
+    'password'=> 'Password',
+    'your_password'=> 'Your password',
+    'user_not_recognised' =>'Username and password do not match any of our users.'
 );

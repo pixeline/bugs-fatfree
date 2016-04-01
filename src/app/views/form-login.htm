@@ -1,15 +1,17 @@
-<form class="pure-form pure-form-stacked">
+    <p>{{ @message }}</p>
+
+<form class="pure-form pure-form-stacked" method="post" action="/authenticate">
     <fieldset>
-        <legend>A Stacked Form</legend>
+        <legend>{{ @welcome }}</legend>
 
-        <label for="email">Email</label>
-        <input id="email" type="email" placeholder="Email">
+        <label for="username">{{ @username }}</label>
+        <input id="username" name="username" type="text" placeholder="{{ @your_username }}">
 
-        <label for="password">Password</label>
-        <input id="password" type="password" placeholder="Password">
+        <label for="password">{{ @password }}</label>
+        <input id="password" name="password" type="password" placeholder="{{ @your_password }}">
 
         <label for="remember" class="pure-checkbox">
-            <input id="remember" type="checkbox"> Remember me
+            <input id="remember" name="remember" type="checkbox"> {{ @remember_me }}
         </label>
 
         <button type="submit" class="pure-button pure-button-primary">Sign in</button>

@@ -3,11 +3,10 @@
 <body>
 
 <div id="layout" class="content pure-g">
-    <div id="nav" class="pure-u">
-        <include if="{{ @SESSION.user.logged_in == 1 }}" href="menu-loggedin.htm" />
-    </div>
     
-    <div id="list" class="pure-u-1"></div>
+    <include if="{{ @SESSION.user.logged_in == 1 }}" href="menu-loggedin.htm" />    
+
+	<include if="{{ @SESSION.user.logged_in == 1 && @SESSION.user.is_inside_project }}" href="project-issuelist.htm" />    
     
     <div id="main" class="pure-u-1">
 	    <include href="{{ @content }}" />
