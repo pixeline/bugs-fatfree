@@ -1,14 +1,19 @@
-<div id="nav" class="pure-u">
-	<a href="#" class="nav-menu-button">{{ @menu_button }}</a>
+<a href="#" class="nav-menu-button">{{ @menu_button }}</a>
+<nav class="nav-inner">
+	
+	<div class="pure-menu">
+		<ul class="pure-menu-list">
+			<li class="pure-menu-item"><a href="/logout">{{ @log_out_link }}</a></li>
+<check if="@SESSION.user.is_inside_project">
+	<true><li><a href="/project/{{ @project.id }}/new" class="primary-button pure-button">{{ @new_issue }}</a></li></true>
+	</check>
+			<li class="pure-menu-heading"><a href="/">{{ @your_projects }}</a></li>
+			
+		<repeat group="{{ @SESSION.user.projects }}" value="{{ @project }}">
+			<li class="pure-menu-item {{ @project.id == @PARAMS.project_id ? 'pure-menu-selected':'' }}"><a href="/project/{{ @project.id }}" class="pure-menu-link">{{ @project.title  }} <span class="email-count">{{ @project.opened_issues_amount  }}</span></a></li>
+		</repeat>
 
-	<nav class="nav-inner">
-    	<button class="primary-button pure-button">{{ @new_issue }}</button>
-
-		<div class="pure-menu">
-    	    <ul class="pure-menu-list">
-    	         <li class="pure-menu-heading">{{ @your_projects }}</li>
-				 <li class="pure-menu-item"><a href="#" class="pure-menu-link">Inbox <span class="email-count">(2)</span></a></li>
-        	</ul>
-		</div>
-	</nav>
-</div>
+			<li class="pure-menu-heading">{{ @your_archived_projects }}</li>
+		</ul>
+	</div>
+</nav>

@@ -1,14 +1,19 @@
 <?php
-	
+
 class MainController extends Controller{
 
-	function render($f3){
-		
-		$projects = new Projects($this->db);
-		$project = $projects->all()[0];
+	function render(){
 
-		$f3->set('project',$project);
-        $template=new Template;
-        echo $template->render('layout.htm');
+		$project = new Project($this->db);
+		$this_project = $project->all();
+		$this->f3->set('project', $this_project);
+
+		$issues=new DB\SQL\Mapper($this->db,'view_projects_issues');
+		$issuesList = $issues->load(array('project_id=?', $this->f3->get('PARAMS.project_id')));
+		$this->f3->set('SESSION.user.is_inside_project',0);
+		$this->f3->set('issues', $issuesList);
+		$this->f3->set('content', 'welcome-loggedin.htm');
 	}
+
+
 }

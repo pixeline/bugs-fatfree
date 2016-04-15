@@ -1,9 +1,10 @@
-    <p>{{ @message }}</p>
 
 <form class="pure-form pure-form-stacked" method="post" action="/authenticate">
     <fieldset>
         <legend>{{ @welcome }}</legend>
-
+		<check if="{{ @message !='' }}">
+			<p class="error">{{ @message }}</p>
+		</check>
         <label for="username">{{ @username }}</label>
         <input id="username" name="username" type="text" placeholder="{{ @your_username }}">
 

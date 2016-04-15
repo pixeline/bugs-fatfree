@@ -3,19 +3,28 @@
 <body>
 
 <div id="layout" class="content pure-g">
-    
-    <include if="{{ @SESSION.user.logged_in == 1 }}" href="menu-loggedin.htm" />    
-
-	<include if="{{ @SESSION.user.logged_in == 1 && @SESSION.user.is_inside_project }}" href="project-issuelist.htm" />    
-    
-    <div id="main" class="pure-u-1">
-	    <include href="{{ @content }}" />
+    <div id="nav" class="pure-u">
+        <header class="pure-g application-branding-zone">
+			<div class="pure-u-1">
+				<a href="/">
+				<img src="/app/assets/images/logo/bugs-logo.svg" alt="{{ @application_name }}" title="{{ @application_name.': '.@application_slogan }}">
+				<h1>{{ @application_name }}</h1>
+				<h2>{{ @application_slogan }}</h2>
+				</a>
+			</div>
+		</header>
+		<include if="{{ @logged_in == 'ok' }}" href="menu-loggedin.htm" />    
     </div>
+	
+	<div id="list" class="pure-u-1">
+		<include if="{{ @logged_in == 'ok' && @SESSION.user.is_inside_project }}" href="project-issuelist.htm" />    
+	</div>
+	<div id="main" class="pure-u-1">
+		<include href="{{ @content }}" />
+	</div>
 </div>
 
-
-
-
+<check if="{{ @GOLIVE == false }}">
 <script src="//localhost:35729/livereload.js"></script>
-
+</check>
 <include href="footer.htm" />

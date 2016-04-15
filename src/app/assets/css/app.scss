@@ -1,10 +1,17 @@
 @import "pure";
+$background-blue: #252A3A;
+$blue-dark: #252A3A;
+$blue-light: #E6E6E6;
+$background-grey: #EEEEEE;
+$yellow: #F8E81C;
 
 /*
  * -- BASE STYLES --
  */
 body {
     color: #333;
+    background: lighten($background-grey, .005%);
+
 }
 
 a {
@@ -17,6 +24,8 @@ a {
  * -- HELPER STYLES --
  * Over-riding some of the .pure-button styles to make my buttons look unique
  */
+.pure-menu-item{height:auto;}
+
 .primary-button,
 .secondary-button {
     box-shadow: none;
@@ -37,7 +46,7 @@ a {
 
 /*
  * -- LAYOUT STYLES --
- * This layout consists of three main elements, `#nav` (navigation bar), `#list` (email list), and `#main` (email content). All 3 elements are within `#layout`
+ * This layout consists of three main elements, `#nav` (navigation bar), `#list` (ticket list), and `#main` (ticket content). All 3 elements are within `#layout`
  */
 #layout, #nav, #list, #main {
     margin: 0;
@@ -47,9 +56,8 @@ a {
 /* Make the navigation 100% width on phones */
 #nav {
     width: 100%;
-    height: 40px;
     position: relative;
-    background: rgb(37, 42, 58);
+    background:$background-blue;
     text-align: center;
 }
 /* Show the "Menu" button on phones */
@@ -80,112 +88,114 @@ a {
  * -- NAV BAR STYLES --
  * Styling the default .pure-menu to look a little more unique.
  */
-#nav .pure-menu {
+#nav {
+	.pure-menu {
     background: transparent;
     border: none;
     text-align: left;
-}
-    #nav .pure-menu-link:hover,
-    #nav .pure-menu-link:focus {
-        background: rgb(55, 60, 90);
-    }
-    #nav .pure-menu-link {
+	}
+
+    .pure-menu-link {
         color: #fff;
-        margin-left: 0.5em;
+        margin-bottom:1px;
     }
-    #nav .pure-menu-heading {
+    .pure-menu-heading {
         border-bottom: none;
         font-size:110%;
-        color: rgb(75, 113, 151);
     }
-
-
+	.pure-menu-link:hover,
+	.pure-menu-link:focus,
+	.pure-menu-selected{
+		background: $yellow;
+		color:$background-blue;
+		a.pure-menu-link{
+			color:$background-blue;
+		}
+	}
+}
+.application-branding-zone{
+	h1{
+		font-size:0;
+	}
+	h2{
+		font-size:.8rem;
+		color:yellow;
+		font-weight: normal;
+		text-transform: lowercase;
+	}
+}
+#main{
+	padding:1rem;
+}
 /*
- * -- EMAIL STYLES --
- * Styles relevant to the email messages, labels, counts, and more.
+ * -- ticket STYLES --
+ * Styles relevant to the ticket messages, labels, counts, and more.
  */
-.email-count {
+.ticket-count {
     color: rgb(75, 113, 151);
 }
 
-.email-label-personal,
-.email-label-work,
-.email-label-travel {
-    width: 15px;
-    height: 15px;
-    display: inline-block;
-    margin-right: 0.5em;
-    border-radius: 3px;
-}
-.email-label-personal {
-    background: #ffc94c;
-}
-.email-label-work {
-    background: #41ccb4;
-}
-.email-label-travel {
-    background: #40c365;
-}
-
-
-/* Email Item Styles */
-.email-item {
+/* ticket Item Styles */
+.ticket-item {
     padding: 0.9em 1em;
     border-bottom: 1px solid #ddd;
     border-left: 6px solid transparent;
+    &:hover{
+	    box-shadow: 1px 1px 16px 4px rgba(0, 0, 0, 0.1);
+    }
 }
-    .email-avatar {
+    .ticket-avatar {
         border-radius: 3px;
         margin-right: 0.5em;
     }
-    .email-name,
-    .email-subject {
+    .ticket-name,
+    .ticket-subject {
         margin: 0;
     }
-    .email-name {
+    .ticket-name {
         text-transform: uppercase;
         color: #999;
     }
-    .email-desc {
+    .ticket-desc {
         font-size: 80%;
         margin: 0.4em 0;
     }
 
-.email-item-selected {
+.ticket-item-selected {
     background: #eee;
 }
-.email-item-unread {
+.ticket-item-unread {
     border-left: 6px solid #1b98f8;
 }
 
-/* Email Content Styles */
-.email-content-header, .email-content-body, .email-content-footer {
+/* ticket Content Styles */
+.ticket-content-header, .ticket-content-body, .ticket-content-footer {
     padding: 1em 2em;
 }
-    .email-content-header {
+    .ticket-content-header {
         border-bottom: 1px solid #ddd;
     }
 
-        .email-content-title {
+        .ticket-content-title {
             margin: 0.5em 0 0;
         }
-        .email-content-subtitle {
+        .ticket-content-subtitle {
             font-size: 1em;
             margin: 0;
             font-weight: normal;
         }
-            .email-content-subtitle span {
+            .ticket-content-subtitle span {
                 color: #999;
             }
-    .email-content-controls {
+    .ticket-content-controls {
         margin-top: 2em;
         text-align: right;
     }
-        .email-content-controls .secondary-button {
+        .ticket-content-controls .secondary-button {
             margin-bottom: 0.3em;
         }
 
-    .email-avatar {
+    .ticket-avatar {
         width: 40px;
         height: 40px;
     }
@@ -200,11 +210,11 @@ a {
 
     /* Move the layout over so we can fit the nav + list in on the left */
     #layout {
-        padding-left:500px; /* "left col (nav + list)" width */
+        padding-left:600px; /* "left col (nav + list)" width */
         position: relative;
     }
 
-    /* These are position:fixed; elements that will be in the left 500px of the screen */
+    /* These are position:fixed; elements that will be in the left 600px of the screen */
     #nav, #list {
         position: fixed;
         top: 0;
@@ -212,8 +222,8 @@ a {
         overflow: auto;
     }
     #nav {
-        margin-left:-500px; /* "left col (nav + list)" width */
-        width:150px;
+        margin-left:-600px; /* "left col (nav + list)" width */
+        width:250px;
         height: 100%;
     }
 
@@ -233,6 +243,11 @@ a {
         width: 100%;
         height: 33%;
         border-bottom: 1px solid #ddd;
+        background: darken($background-grey, 5%);
+        h1{
+	        font-size: 1rem;
+	        padding:1rem;
+        }
     }
 
     #main {
@@ -240,7 +255,7 @@ a {
         top: 33%;
         right: 0;
         bottom: 0;
-        left: 150px;
+        left: 250px;
         overflow: auto;
         width: auto; /* so that it's not 100% */
     }
@@ -256,7 +271,6 @@ a {
 
     /* This will take up the entire height, and be a little thinner */
     #list {
-        margin-left: -350px;
         width:350px;
         height: 100%;
         border-right: 1px solid #ddd;
@@ -266,6 +280,5 @@ a {
     #main {
         position: static;
         margin: 0;
-        padding: 0;
     }
 }

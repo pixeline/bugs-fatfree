@@ -1,9 +1,9 @@
 <?php
 	
-	class Projects extends DB\SQL\Mapper{
+	class Issue extends DB\SQL\Mapper{
 
 	public function __construct(DB\SQL $db) {
-	    parent::__construct($db,'projects');
+	    parent::__construct($db,'issues');
 	}
 	
 	public function all() {

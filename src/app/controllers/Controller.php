@@ -1,21 +1,23 @@
 <?php
 
 class Controller {
-    
-    protected $f3;
-    protected $db;
 
-    function beforeroute(){
-        if($this->f3->get('SESSION.user') === null ) {
-            $this->f3->reroute('/login');
-            exit;
-        }
-    }
+	protected $f3;
+	protected $db;
 
-    function afterroute(){
+	function beforeroute(){
+		if($this->f3->get('SESSION.logged_in') !== 'ok' ) {
+			$this->f3->reroute('/login');
+			exit;
+		}
+		$this->f3->set('logged_in', 'ok');
+	}
+
+
+	function afterroute(){
 		$template=new Template;
-        echo $template->render('layout.htm');
-    }
+		echo $template->render('layout.htm');
+	}
 
 
 	function __construct() {

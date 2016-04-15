@@ -1,0 +1,20 @@
+<form class="pure-form" style="width:100%" method="post">
+    <fieldset>
+        <legend>Describe your issue</legend>
+
+        <label for="title">Title</label>
+        <input id="title" type="text" class="pure-input-1" name="title" placeholder="Descriptive title" required>
+	
+		<label for="description">Description</label>
+		<textarea name="description" id="description" placeholder="Describe the steps to reproduce the problem. Make sure to include urls, the expected result, the actual result." class="pure-input-1" required></textarea>
+    </fieldset>
+    <fieldset>
+	    <legend>Add screenshots</legend>
+		<p>Screen captures help a lot. If possible, add some. (Maximum filesize: {{ ini_get('upload_max_filesize') }})</p>
+		<label for="screenshot">Screenshot1</label>
+		<input id="screenshot" type="file" name="screenshot">
+    </fieldset>
+    
+            <button type="submit" class="pure-button pure-button-primary">Submit</button>
+
+</form>
