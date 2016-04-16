@@ -1,7 +1,7 @@
 @import "pure";
 $background-blue: #252A3A;
 $blue-dark: #252A3A;
-$blue-light: #E6E6E6;
+$blue-light: lighten($blue-dark, 20%);
 $background-grey: #EEEEEE;
 $yellow: #F8E81C;
 
@@ -11,7 +11,7 @@ $yellow: #F8E81C;
 body {
     color: #333;
     background: lighten($background-grey, .005%);
-
+	background: white;
 }
 
 a {
@@ -162,7 +162,9 @@ a {
     }
 
 .ticket-item-selected {
-    background: #eee;
+    background:white;
+	box-shadow: 1px 1px 16px 4px rgba(0, 0, 0, 0.1);
+
 }
 .ticket-item-unread {
     border-left: 6px solid #1b98f8;
@@ -262,6 +264,35 @@ a {
 
 }
 
+.button-small {
+	font-size: 85%;
+}
+.button-success,
+.button-error,
+.button-warning,
+.button-secondary {
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-success {
+    background: rgb(28, 184, 65); /* this is a green */
+}
+
+.button-error {
+    background: rgb(202, 60, 60); /* this is a maroon */
+}
+
+.button-warning {
+    background: rgb(223, 117, 20); /* this is an orange */
+}
+
+.button-secondary {
+    background: rgb(66, 184, 221); /* this is a light blue */
+    background: $blue-light;
+}
+    
 /*
  * -- DESKTOP (AND UP) MEDIA QUERIES --
  * On desktops and other large-sized devices, we want to customize some

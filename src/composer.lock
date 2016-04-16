@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "366a807a9e3ce11b3c37a80f7cd0ed54",
-    "content-hash": "a7f8245f133cbcb162e28aece93a95f8",
+    "hash": "39dd0158e318e430212c4aee0fb5f4d0",
+    "content-hash": "85e83d439f126ab223781126a5e66a57",
     "packages": [
         {
             "name": "bcosca/fatfree",
@@ -37,12 +37,55 @@
             "description": "A powerful yet easy-to-use PHP micro-framework designed to help you build dynamic and robust Web applications - fast!",
             "homepage": "http://fatfreeframework.com/",
             "time": "2015-12-31 17:20:37"
+        },
+        {
+            "name": "verot/class.upload.php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/verot/class.upload.php.git",
+                "reference": "62bc7ec3b18f2a3eb7eb99e4feca843b2481a41b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/verot/class.upload.php/zipball/62bc7ec3b18f2a3eb7eb99e4feca843b2481a41b",
+                "reference": "62bc7ec3b18f2a3eb7eb99e4feca843b2481a41b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=4"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/class.upload.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPLv2"
+            ],
+            "authors": [
+                {
+                    "name": "Colin Verot",
+                    "email": "colin@verot.net"
+                }
+            ],
+            "description": "This PHP class uploads files and manipulates images very easily.",
+            "homepage": "http://www.verot.net/php_class_upload.htm",
+            "keywords": [
+                "gd",
+                "upload"
+            ],
+            "time": "2016-04-11 21:46:02"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "verot/class.upload.php": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

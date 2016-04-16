@@ -22,7 +22,7 @@ class UserController extends Controller{
 		$password = $this->f3->get('POST.password');
 
 		$user = new User($this->db);
-		$user->getByName($username);
+		$user->getByIdOrName($username);
 
 		if($user->dry()) {
 			$this->f3->set('SESSION.message', $this->f3->get('user_not_recognised') );
@@ -39,21 +39,17 @@ class UserController extends Controller{
 					'picture' => $user->picture,
 					'language' => $user->language,
 					'created_at' => $user->created_at,
-					'updated_at' => $user->updated_at
+					'updated_at' => $user->updated_at,
+					'projects' => $user->projects($user->id),
 				));
 
 			$this->f3->set('SESSION.logged_in', 'ok');
-
-			// User projects (+ opened issues for each)
-			$this->f3->set('SESSION.user.projects', $this->db->exec('SELECT p.id, p.title, (SELECT count(id) FROM issues WHERE closed_at IS NULL AND projects_id=p.id ) as opened_issues_amount FROM projects_users as pu LEFT JOIN projects as p ON pu.projects_id=p.id WHERE pu.users_id='. $user->id ));
-
 			$this->f3->reroute('/');
 		} else {
 			$this->f3->set('SESSION.message', $this->f3->get('password_not_recognised') );
 			$this->f3->reroute('/login');
 		}
 	}
-
 
 	function logout(){
 		$this->f3->clear('SESSION');

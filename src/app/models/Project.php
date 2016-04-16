@@ -31,4 +31,14 @@
 	    $this->load(array('id=?',$id));
 	    $this->erase();
 	}
+	
+	public function users($project_id){
+		// Fetch a given project's users info
+		return $this->db->exec("SELECT * FROM view_projects_users WHERE project_id='$project_id'");
+	}
+	
+	public function issues($project_id){
+		// Fetch a given project's users info
+		return $this->db->exec("SELECT * FROM view_projects_issues WHERE project_id='$project_id'");
+	}
 }

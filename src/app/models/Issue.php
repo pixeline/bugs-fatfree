@@ -18,6 +18,13 @@
 
 	public function add() {
 	    $this->copyFrom('POST');
+	    $this->created_at = date("Y-m-d H:i:s");
+	    $this->updated_at = $this->created_at;
+/*
+	    echo '<pre>';
+	    pr($this);
+	    exit;
+*/
 	    $this->save();
 	}
 	

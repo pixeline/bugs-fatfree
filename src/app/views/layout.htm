@@ -13,11 +13,12 @@
 				</a>
 			</div>
 		</header>
-		<include if="{{ @logged_in == 'ok' }}" href="menu-loggedin.htm" />    
+		<include if="{{ @SESSION.logged_in == 'ok' }}" href="menu-loggedin.htm" />    
     </div>
 	
 	<div id="list" class="pure-u-1">
-		<include if="{{ @logged_in == 'ok' && @SESSION.user.is_inside_project }}" href="project-issuelist.htm" />    
+
+		<include if="{{ @SESSION.logged_in == 'ok' && @SESSION.project.id !='' }}" href="project.issuelist.htm" />    
 	</div>
 	<div id="main" class="pure-u-1">
 		<include href="{{ @content }}" />

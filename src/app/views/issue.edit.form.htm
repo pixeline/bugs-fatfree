@@ -1,4 +1,9 @@
+<h1>{{ @issue_edit_form_title }}</h1>
 <form class="pure-form" style="width:100%" method="post">
+	<input type="hidden" name="projects_id" value="{{ @project.id }}">
+	<input type="hidden" name="created_by" value="{{ @SESSION.user.id }}">
+	<input type="hidden" name="assigned_to" value="{{ @project.default_assignee }}">
+
     <fieldset>
         <legend>Describe your issue</legend>
 

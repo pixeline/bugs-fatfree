@@ -1,7 +1,7 @@
-<h1>{{ @project.title }}</h1>
-<check if="{{ count(@issues)>0 }}">
+<h1>{{ @SESSION.project.title }}</h1>
+<check if="{{ count(@SESSION.project.issues)>0 }}">
 <true>
-<repeat group="{{ @issues }}" value="{{ @issue }}">
+<repeat group="{{ @SESSION.project.issues }}" value="{{ @issue }}">
 <a href="/project/{{ @issue.project_id }}/issue/{{ @issue.issue_id }}">
 	<div class="ticket-item {{ @PARAMS.issue_id == @issue.issue_id ? 'ticket-item-selected': '' }} pure-g">
 		<div class="pure-u">

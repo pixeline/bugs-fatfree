@@ -1,0 +1,36 @@
+
+<h1>{{ @SESSION.issue.title }}</h1>
+
+<div class="issue-description">
+	{{ @SESSION.issue.description }}
+</div>
+<a class="pure-button" href="#">Edit</a>
+
+<hr>
+<div class="issue-screenshots">
+	<h2>Screenshots</h2>
+	<button class="button-secondary pure-button">
+    <i class="fa fa-camera-retro" aria-hidden="true"></i>
+    Add screenshot
+</button>
+	<repeat group="{{ @SESSION.issue.attachments }}" value="{{ @file }}">
+		{{ @file.filename }}
+		{{ @file.filetype }}
+		{{ @file.display_name }}
+		{{ @file.created_at }}
+	</repeat>
+	
+</div>
+
+<div class="issue-discussion">
+	<h2>Discussion</h2>
+	<button class="button-secondary pure-button">
+    <i class="fa fa-pencil" aria-hidden="true"></i>
+    Add comment
+</button>
+	<repeat group="{{ @SESSION.issue.comments }}" value="{{ @comment }}">
+		{{ @comment.content }}
+		{{ @comment.created_at }}
+		{{ @comment.display_name }}
+	</repeat>
+</div>
