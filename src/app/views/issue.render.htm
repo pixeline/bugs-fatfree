@@ -1,18 +1,25 @@
+<div class="issue-tags">
+	<check if="{{ @SESSION.issue.closed_at =='' }}"> 
+		<true><span class="issue-status issue-status--open">status: open</span></true>
+		<false><span class="issue-status issue-status--closed">status: closed</span></false>
+	</check>
+</div>
 
-<h1>{{ @SESSION.issue.title }}</h1>
+<h1>{{ @SESSION.issue.title }}  <a href="/project/{{ @SESSION.project.id }}/issue/{{ @SESSION.issue.id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+</h1>
+
 
 <div class="issue-description">
 	{{ @SESSION.issue.description }}
 </div>
-<a class="pure-button" href="#">Edit</a>
-
-<hr>
+<check if="{{ @SESSION.issue.live_url != '' }}">
+<p class="issue-live_url voice voice--discreete">
+	<i class="fa fa-arrow-right"></i> See the problem: <a href="{{ @SESSION.issue.live_url}}" target="_blank">{{ @SESSION.issue.live_url}}</a>
+</p>
+</check>
+<p class="ticket-assigned_to voice voice--discreete"><i class="fa fa-arrow-right"></i> Assigned to: {{ @SESSION.issue.assigned_display_name  }}</p>
 <div class="issue-screenshots">
-	<h2>Screenshots</h2>
-	<button class="button-secondary pure-button">
-    <i class="fa fa-camera-retro" aria-hidden="true"></i>
-    Add screenshot
-</button>
+	<include href="{{ 'partials/upload.field.htm' }}" />
 	<repeat group="{{ @SESSION.issue.attachments }}" value="{{ @file }}">
 		{{ @file.filename }}
 		{{ @file.filetype }}
@@ -21,7 +28,7 @@
 	</repeat>
 	
 </div>
-
+<hr>
 <div class="issue-discussion">
 	<h2>Discussion</h2>
 	<button class="button-secondary pure-button">

@@ -1,19 +1,21 @@
 <h1>{{ @SESSION.project.title }}</h1>
+<h2>Active tickets</h2>
 <check if="{{ count(@SESSION.project.issues)>0 }}">
 <true>
 <repeat group="{{ @SESSION.project.issues }}" value="{{ @issue }}">
-<a href="/project/{{ @issue.project_id }}/issue/{{ @issue.issue_id }}">
-	<div class="ticket-item {{ @PARAMS.issue_id == @issue.issue_id ? 'ticket-item-selected': '' }} pure-g">
+<a href="/project/{{ @issue.project_id }}/issue/{{ @issue.id }}">
+	<div class="ticket-item {{ @PARAMS.issue_id == @issue.id ? 'ticket-item-selected': '' }} pure-g">
 		<div class="pure-u">
-			<img class="ticket-avatar" alt="User&#x27;s avatar" height="64" width="64" src="/img/common/tilo-avatar.png">
+			<img class="ticket-avatar" alt="User&#x27;s avatar" height="64" width="64" src="{{ @issue.creator_picture }}">
 		</div>
 		
 		<div class="pure-u-3-4">
-			<h5 class="ticket-name">{{ @issue.display_name }}</h5>
-			<h4 class="ticket-subject">{{ @issue.issue_title  }}</h4>
+			<h5 class="ticket-name">{{ @issue.creator_display_name }}</h5>
+			<h4 class="ticket-subject">{{ @issue.title  }}</h4>
 			<p class="ticket-desc">
-				{{ truncate( @issue.issue_description )  }}
+				{{ truncate( @issue.description )  }}
 			</p>
+			<small class="ticket-assigned_to"><i class="fa fa-arrow-right"></i> {{ @issue.assigned_display_name  }}</small>
 		</div>
 	</div>
 </a>
@@ -25,3 +27,4 @@
 </div>
 </false>
 </check>
+<h2>Archived tickets</h2>

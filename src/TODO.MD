@@ -2,11 +2,12 @@
 
 ## must-have
 
-- ISSUE/ADD
-- ISSUE/EDIT
-- ISSUE/DELETE
-- ATTACHMENT/ADD
+- ATTACHMENT/ADD : utiliser verot.net au lieu de la classe existante >> http://fatfreeframework.com/web#receive  + VEROT.NET + https://github.com/blueimp/jQuery-File-Upload/wiki/Setup#using-jquery-file-upload-ui-version-with-a-custom-server-side-upload-handler
 - ATTACHMENT/DELETE
+
+- ISSUE/CHANGESTATUS ( close / wontfix )
+- ISSUE/REASSIGN
+- ISSUE/DELETE
 - COMMENT/ADD
 - COMMENT/READ
 - COMMENT/EDIT
@@ -25,6 +26,7 @@
 - installation wizard
 
 ## Done
+- ISSUE/ADD
 - translation system (create {iso}.php inside app/lang/)
 
 # APPLICATION ARCHITECTURE

@@ -1,0 +1,24 @@
+
+<h1>{{ @issue_edit_form_title }}</h1>
+<form class="pure-form" style="width:100%" method="post">
+	<input type="hidden" name="projects_id" value="{{ @SESSION.project.id }}">
+	<input type="hidden" name="created_by" value="{{ @SESSION.user.id }}">
+	<input type="hidden" name="assigned_to" value="{{ @SESSION.project.default_assignee }}">
+
+    <fieldset>
+        <legend>Describe your issue</legend>
+
+        <label for="title">Title</label>
+        <input id="title" type="text" class="pure-input-1" name="title" value="{{ @SESSION.issue.title }}" placeholder="Descriptive title" required>
+	
+		<label for="live_url">URL of the error:</label>
+		<input type="url" name="live_url" id="live_url" value="{{ @SESSION.issue.live_url }}" class="pure-input-1" >
+		
+		<label for="description">Description</label>
+		<textarea name="description" id="description" placeholder="Describe the steps to reproduce the problem. Make sure to include urls, the expected result, the actual result." class="pure-input-1" required>{{ @SESSION.issue.description }}</textarea>
+    </fieldset>
+
+    <p class="voice voice--info">Want to upload screenshots? You'll be able to, once you've saved your ticket.)</p>
+            <button type="submit" class="pure-button pure-button-primary">Save ticket</button>
+
+</form>

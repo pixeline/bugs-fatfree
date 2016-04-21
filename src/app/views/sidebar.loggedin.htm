@@ -5,7 +5,7 @@
 		<ul class="pure-menu-list">
 			<li class="pure-menu-item"><a href="/logout">{{ @log_out_link }}</a></li>
 <check if="@SESSION.project.id !='' ">
-	<true><li><a href="/project/{{ @project.id }}/new" class="primary-button pure-button">{{ @new_issue }}</a></li></true>
+	<true><li><a href="/project/{{ @SESSION.project.id }}/new" class="primary-button pure-button">{{ @new_issue }}</a></li></true>
 	</check>
 			<li class="pure-menu-heading"><a href="/">{{ @your_projects }}</a></li>
 			

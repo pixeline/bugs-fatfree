@@ -16,7 +16,7 @@ class MainController extends Controller{
 		$issuesList = $issues->load(array('project_id=?', $this->f3->get('PARAMS.project_id')));
 		
 		$this->f3->set('issues', $issuesList);
-		$this->f3->set('content', 'welcome-loggedin.htm');
+		$this->f3->set('content', 'home.dashboard.htm');
 	}
 
 
