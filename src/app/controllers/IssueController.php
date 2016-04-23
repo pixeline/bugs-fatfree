@@ -66,85 +66,51 @@ class IssueController extends Controller{
 
 	function upload(){
 		error_reporting(E_ALL | E_STRICT);
-		/*
-		$options = array(
-			'accept_file_types' => '/\.(gif|jpe?g|png)$/i',
-			'upload_dir' => $this->f3->get('ROOT').'/uploads/',
-			'upload_url' => $this->f3->get('HOST').'/uploads/',
-			'mkdir_mode' => 0775,
-		);
-*/
-		//$upload_handler = new UploadHandler($options);
 
-		/*
-		$files = array();
-
-		foreach ($_FILES['files'] as $k => $l) {
-			foreach ($l as $i => $v) {
-				if (!array_key_exists($i, $files))
-					$files[$i] = array();
-				$files[$i][$k] = $v;
-			}
-		}
-*/
-		//$handle = new Upload($file);
 		$upload_folder = $this->f3->get('ROOT').'/'. $this->f3->get('UPLOADS');
 
-		$handle = new upload('php:input');
+		$web = \Web::instance();
 
-		if ($handle->uploaded) {
-			// save uploaded image with no changes
-			$handle->Process($upload_folder);
-			if (!$handle->processed) {
-				echo json_encode(array('error_orig' =>$handle->error ) );
-				$handle->clean();
-				exit;
+		$files = $web->receive();
+
+		if(count($files)>0){
+			$report = array();
+			foreach($files as $file => $okay){
+				// get image info
+				$local_path_image = $this->f3->get('ROOT').'/'.$file;
+
+				// Save in DB.
+				$attachment = new DB\SQL\Mapper($this->db, 'attachments');
+				$attachment->filename = $file;
+				$attachment->filetype = pathinfo($local_path_image, PATHINFO_EXTENSION);
+				$attachment->issues_id =  $this->f3->get('SESSION.issue.id');
+				$attachment->users_id =  $this->f3->get('SESSION.user.id');
+				$attachment->created_at = date("Y-m-d H:i:s");
+				$attachment->save();
+
+				// Create thumbnail
+				$img = new Image('../../'.$file);
+				$img->resize(  $this->f3->get('thumbwidth'), $this->f3->get('thumbheight'), true, true );
+				$thumb_filename = pathinfo($local_path_image, PATHINFO_FILENAME).'_thumb.'. $attachment->filetype;
+				file_put_contents($upload_folder. $thumb_filename, $img->dump('jpeg'));
+
+				$report[] =     array(
+					'name' => $attachment->filename,
+					'size'=> human_filesize($local_path_image),
+					'type'=> $attachment->filetype,
+					'url'=>  $this->f3->get('HOST').'/'. $attachment->filename ,
+					'thumbnailUrl'=> $this->f3->get('HOST').'/'. $this->f3->get('UPLOADS'). $thumb_filename ,
+					'deleteUrl'=> '',
+					'deleteType'=> 'DELETE'
+				);
+
 			}
-			// Save in DB.
-			$attachment = new DB\SQL\Mapper($this->db, 'attachments');
-			$attachment->filename = $handle->file_dst_name;
-			$attachment->filetype = $handle->image_dst_type;
-			$attachment->issues_id =  $this->f3->get('POST.issue_id');
-			$attachment->users_id =  $this->f3->get('SESSION.user.id');
-			$attachment->created_at = date("Y-m-d H:i:s");
-			$attachment->save();
-
-			// Thumbnail
-			$handle->file_name_body_pre = 'thumb_';
-			$handle->file_safe_name = true;
-			$handle->image_resize = true;
-			$handle->image_ratio_crop = true;
-			$handle->image_x = 100;
-			$handle->image_y = 100;
-			$handle->dir_chmod = 0775;
-			$handle->allowed = array('image/*');
-			$handle->process($upload_folder);
-			if (!$handle->processed) {
-				echo json_encode(array('error_thumb' =>$handle->error ) );
-				$handle->clean();
-				exit;
-			}
-
-			// Finish up.
-			
-			$result = array(
-				"files"=> array(
-					array(
-						'name' => $handle->file_dst_name,
-						'size'=> $handle->file_src_size,
-						'type'=> $handle->file_src_mime,
-						'url'=>  $this->f3->get('HOST').'/'. $this->f3->get('UPLOADS'). $attachment->filename ,
-						'thumbnailUrl'=> $this->f3->get('HOST').'/'. $this->f3->get('UPLOADS'). $handle->file_dst_name ,
-						'deleteUrl'=> '',
-						'deleteType'=> 'DELETE'
-					)
-				)
-			);
-
-		} else{
-			$result = array('error_up' =>$handle->error );
-
 		}
+
+		$result = array(
+			"files"=> $report
+		);
+
 		echo json_encode($result);
 		$handle->clean();
 		exit;
