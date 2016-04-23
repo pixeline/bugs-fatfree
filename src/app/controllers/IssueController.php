@@ -65,7 +65,7 @@ class IssueController extends Controller{
 
 
 	function upload(){
-		//error_reporting(E_ALL | E_STRICT);
+		error_reporting(E_ALL | E_STRICT);
 		/*
 		$options = array(
 			'accept_file_types' => '/\.(gif|jpe?g|png)$/i',
@@ -88,14 +88,16 @@ class IssueController extends Controller{
 		}
 */
 		//$handle = new Upload($file);
-		
+		$upload_folder = $this->f3->get('ROOT').'/'. $this->f3->get('UPLOADS');
 
-		$handle = new upload('php:'.$_SERVER['HTTP_X_FILE_NAME']);
+		$handle = new upload('php:input');
+
 		if ($handle->uploaded) {
 			// save uploaded image with no changes
-			$handle->Process($this->f3->get('UPLOADS'));
+			$handle->Process($upload_folder);
 			if (!$handle->processed) {
-				echo json_encode(array('error' =>$handle->error ) );
+				echo json_encode(array('error_orig' =>$handle->error ) );
+				$handle->clean();
 				exit;
 			}
 			// Save in DB.
@@ -116,27 +118,38 @@ class IssueController extends Controller{
 			$handle->image_y = 100;
 			$handle->dir_chmod = 0775;
 			$handle->allowed = array('image/*');
-			$handle->process($this->f3->get('UPLOADS'));
+			$handle->process($upload_folder);
 			if (!$handle->processed) {
-				echo json_encode(array('error' =>$handle->error ) );
+				echo json_encode(array('error_thumb' =>$handle->error ) );
+				$handle->clean();
 				exit;
 			}
 
 			// Finish up.
-			$handle->clean();
-			$result = array("files"=> [
-				array(
-					'name' => $handle->file_dst_name,
-					'size'=> $handle->file_src_size,
-					'type'=> $handle->file_src_mime,
-					'url'=>  $this->f3->get('HOST').'/'. $this->f3->get('UPLOADS'). $attachment->filename ,
-					'thumbnailUrl'=> $this->f3->get('HOST').'/'. $this->f3->get('UPLOADS'). $handle->file_dst_name ,
-					'deleteUrl'=> '',
-					'deleteType'=> 'DELETE'
+			
+			$result = array(
+				"files"=> array(
+					array(
+						'name' => $handle->file_dst_name,
+						'size'=> $handle->file_src_size,
+						'type'=> $handle->file_src_mime,
+						'url'=>  $this->f3->get('HOST').'/'. $this->f3->get('UPLOADS'). $attachment->filename ,
+						'thumbnailUrl'=> $this->f3->get('HOST').'/'. $this->f3->get('UPLOADS'). $handle->file_dst_name ,
+						'deleteUrl'=> '',
+						'deleteType'=> 'DELETE'
+					)
 				)
-				]);
-			echo json_encode($result);
-			exit;
+			);
+
+		} else{
+			$result = array('error_up' =>$handle->error );
+
 		}
+		echo json_encode($result);
+		$handle->clean();
+		exit;
+
 	}
+
+
 }

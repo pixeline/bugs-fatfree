@@ -15,7 +15,11 @@ $f3->set('LOCALES','app/lang/');
 //$f3->set('LANGUAGE','fr');
 
 
-new Session();
+// Store session in Database
+$db=new \DB\SQL( $f3->get('db') ,$f3->get('dbusername'),$f3->get('dbpassword'));
+// just create an object
+new \DB\SQL\Session($db);
+//new Session();
 
 $f3->config('routes.ini');
 
