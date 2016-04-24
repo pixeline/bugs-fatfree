@@ -2,7 +2,9 @@
 
 ## must-have
 
-- ATTACHMENT/ADD : utiliser verot.net au lieu de la classe existante >> http://fatfreeframework.com/web#receive  + VEROT.NET + https://github.com/blueimp/jQuery-File-Upload/wiki/Setup#using-jquery-file-upload-ui-version-with-a-custom-server-side-upload-handler
+- ATTACHMENT/ADD : UI indique encore « file upload failed » alors qu’il a marché. voir
+javascript. + AFFICHER LES UPLOADS DE LA DB
+
 - ATTACHMENT/DELETE
 
 - ISSUE/CHANGESTATUS ( close / wontfix )

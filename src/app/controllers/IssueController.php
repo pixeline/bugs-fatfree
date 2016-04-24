@@ -94,7 +94,7 @@ class IssueController extends Controller{
 				$thumb_filename = pathinfo($local_path_image, PATHINFO_FILENAME).'_thumb.'. $attachment->filetype;
 				file_put_contents($upload_folder. $thumb_filename, $img->dump('jpeg'));
 
-				$report[] =     array(
+				$report[] = array(
 					'name' => $attachment->filename,
 					'size'=> human_filesize($local_path_image),
 					'type'=> $attachment->filetype,
